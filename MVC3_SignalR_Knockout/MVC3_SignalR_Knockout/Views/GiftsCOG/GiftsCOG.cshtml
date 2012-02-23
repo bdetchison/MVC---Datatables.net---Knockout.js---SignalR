@@ -1,0 +1,143 @@
+﻿@model MVC3_SignalR_Knockout.Models.GiftModel[]
+@using System.Web.Script;
+@{
+    ViewBag.Title = "GiftsCOG";
+}
+@using (Html.BeginForm())
+{
+    <h2>
+        Gifts</h2>
+    <p>
+        You have asked for <span data-bind="text: gifts().length">&nbsp;</span> gift(s)</p>	
+	  
+    <table data-bind="dataTable: { dataSource : gifts, rowTemplate: 'sample2RowTemplate', 
+             options: {
+                aoColumns: [
+                        { sTitle: 'Id', mDataProp:'Id' },
+                        { sTitle: 'Title', mDataProp:'Title' },
+                        { sTitle: 'Price', mDataProp:'Price' },
+                        { sTitle:'delete', fnRender: function(obj) {					
+					            return 'blah'
+				                }
+                        }
+                ]}}">
+        <thead>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+   
+    <br />
+    <br />
+    
+    <label>
+        New Title</label>
+    <input id="newTitle" type="text" />
+    <label>
+        New Price</label>
+    <input id="newPrice" type="text" />
+    <br />
+    <button data-bind="click: addGift">
+        Add Gift</button>
+    <button data-bind="enable: gifts().length > 0" type="submit">
+        Submit</button>	
+
+    <button data-bind="click: testUpdate" type="submit">
+        TestUpdate</button>	 
+    
+    <br />
+    <br />
+    <br />
+    <b>records to send back to server in JSON</b>
+    <p data-bind="text: ko.toJSON(vm.gifts())">
+    </p>
+       
+    <script id="sample2RowTemplate" type="text/html">
+        <td> <label data-bind="text: Id" /></td>
+        <td> <input type="text" data-bind="value: Title" /></td>
+        <td> <input type="text" data-bind="value: Price" /></td>      
+        <td><a data-bind="click: function() { vm.removeGift($data); }">Remove</a></td>
+    </script>
+}
+<script type="text/javascript" src="/signalr/hubs"></script>
+<script type="text/javascript">
+    function guidGenerator() {
+        var S4 = function() {
+           return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        };
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+
+    //initial load
+    var initialData = @Html.Raw(Json.Encode(Model));   
+
+    //define gift class
+    function GiftRecord(id, title, price) {
+        this.Id = ko.observable(id);
+        this.Title = ko.observable(title);
+        this.Price = ko.observable(price);
+    }
+    
+        //do some basic mapping (without mapping plugin)
+        var mappedData = ko.utils.arrayMap(initialData, function(item) {
+            return new GiftRecord(item.Id, item.Title, item.Price);
+        });
+
+    
+    //Build viewModel
+    function viewModel()
+    {      
+    	this.gifts = ko.observableArray(mappedData); 
+
+        this.testUpdate = function(){
+            this.gifts()[0].Title("test123");
+        }
+        
+        this.addGift = function () {
+            var title = $("#newTitle").val();
+            var price = $("#newPrice").val();
+			this.gifts.push(new GiftRecord(guidGenerator(), title, parseInt(price)));
+		};
+		this.removeGift = function (gift) {
+            this.gifts.remove(function (item2) { return gift.Id == item2.Id; });
+		};
+		this.save = function() {  
+			ko.utils.postJson(location.href, { gifts: ko.toJS(this.gifts()), guid : giftsSignalR.guid });
+		};
+	}   
+ 
+    vm = new viewModel();
+
+    //Bind viewModel to HTML
+	ko.applyBindings(vm);   
+
+
+    //Build SignalR connection to recieve nofications    
+    var giftsSignalR;
+
+    $(function () {
+        giftsSignalR = $.connection.giftHub;
+        //add handler to handle the nofication
+        giftsSignalR.setGifts = function (data, guid) {
+            //Run this code only if the current client was not the initiator.
+            if (guid != giftsSignalR.guid)            
+            {
+                var r=confirm("There was a data change.  Do you want to reload the data?");
+
+                if (r==true)
+                  {                     
+                    var mappedData = ko.utils.arrayMap(data, function(item) {
+                        return new GiftRecord(item.Id, item.Title, item.Price);
+                    });
+
+                    vm.gifts(mappedData);
+                  }
+             }
+        };         
+
+        $.connection.hub.start(function () { giftsSignalR.start(); });        
+    }); 
+ 
+	$("form").validate({ submitHandler: function() { vm.save() } });
+</script>

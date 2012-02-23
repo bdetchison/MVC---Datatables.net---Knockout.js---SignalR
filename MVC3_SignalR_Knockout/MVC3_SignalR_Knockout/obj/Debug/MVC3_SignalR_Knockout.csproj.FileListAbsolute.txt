@@ -1,0 +1,18 @@
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\MVC3_SignalR_Knockout.dll
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\MVC3_SignalR_Knockout.pdb
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\EntityFramework.dll
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\SignalR.dll
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\EntityFramework.xml
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\MVC3_SignalR_Knockout.dll
+C:\Users\Brandon Etchison\documents\visual studio 2010\Projects\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\MVC3_SignalR_Knockout.pdb
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\MVC3_SignalR_Knockout.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\MVC3_SignalR_Knockout.pdb
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\EntityFramework.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\Microsoft.Web.Infrastructure.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\SignalR.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\EntityFramework.xml
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\ResolveAssemblyReference.cache
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\MVC3_SignalR_Knockout.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\MVC3_SignalR_Knockout.pdb
