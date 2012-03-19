@@ -16,3 +16,7 @@ D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_S
 D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\ResolveAssemblyReference.cache
 D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\MVC3_SignalR_Knockout.dll
 D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\obj\Debug\MVC3_SignalR_Knockout.pdb
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\Newtonsoft.Json.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\SignalR.Hosting.AspNet.dll
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\Newtonsoft.Json.pdb
+D:\Git\MVC---Datatables.net---Knockout.js---SignalR\MVC3_SignalR_Knockout\MVC3_SignalR_Knockout\bin\Newtonsoft.Json.xml

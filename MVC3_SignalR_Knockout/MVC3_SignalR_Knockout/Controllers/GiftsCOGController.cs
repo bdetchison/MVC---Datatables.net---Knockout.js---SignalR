@@ -2,140 +2,146 @@
 using System.Web.Mvc;
 using MVC3_SignalR_Knockout.Models;
 using MVC3_SignalR_Knockout.Utility;
-using SignalR.Hubs;
+using SignalR;
+using SignalR.Hosting.AspNet;
+using SignalR.Infrastructure;
 
 namespace MVC3_SignalR_Knockout.Controllers
 {
-    public class GiftsCOGController : Controller
-    {
-        //
-        // GET: /GiftsCOG/
+	public class GiftsCOGController : Controller
+	{
+		//
+		// GET: /GiftsCOG/
 
-        public ActionResult Index()
-        {
-            var initialState = new[] {
+		public ActionResult Index()
+		{
+			var initialState = new[] {
                 new GiftModel { Title = "Tall Hat", Price = 49.95 },
                 new GiftModel { Title = "Long Cloak", Price = 78.25 }
             };
-            return View(initialState);
-        }
+			return View(initialState);
+		}
 
-        [HttpPost]
-        public ActionResult Index([FromJson] IEnumerable<GiftModel> gifts)
-        {
-            // Can process the data any way we want here,
-            // e.g., further server-side validation, save to database, etc
-            return View("Saved", gifts);
-        }
-
-
-        [HttpPost]
-        public ActionResult GiftsCOG([FromJson] List<GiftModel> gifts, [FromJson] string guid)
-        {
-            //mimic save action
-            GiftHub.Gifts = gifts.ToArray();
-
-            //Initiate client notification
-            dynamic clients = Hub.GetClients<GiftHub>();
-            clients.setGifts(GiftHub.Gifts, guid);
-
-            //load view
-            return View(gifts.ToArray());
-        }
-
-        public ActionResult GiftsCOG()
-        {
-
-            GiftModel[] gifts = GiftHub.Gifts;
-
-            return View(gifts);
-        }
+		[HttpPost]
+		public ActionResult Index([FromJson] IEnumerable<GiftModel> gifts)
+		{
+			// Can process the data any way we want here,
+			// e.g., further server-side validation, save to database, etc
+			return View("Saved", gifts);
+		}
 
 
-        //
-        // GET: /GiftsCOG/Details/5
+		[HttpPost]
+		public ActionResult GiftsCOG([FromJson] List<GiftModel> gifts, [FromJson] string guid)
+		{
+			//mimic save action
+			GiftHub.Gifts = gifts.ToArray();
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+			//Initiate client notification
+			IConnectionManager connectionManager = AspNetHost.DependencyResolver.Resolve<IConnectionManager>();
+			dynamic clients = connectionManager.GetClients<GiftHub>();
 
-        //
-        // GET: /GiftsCOG/Create
+			//This call has been depricated with version .4
+			//   dynamic clients = Hub.GetClients<GiftHub>();
+			clients.setGifts(GiftHub.Gifts, guid);
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+			//load view
+			return View(gifts.ToArray());
+		}
 
-        //
-        // POST: /GiftsCOG/Create
+		public ActionResult GiftsCOG()
+		{
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+			GiftModel[] gifts = GiftHub.Gifts;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			return View(gifts);
+		}
 
-        //
-        // GET: /GiftsCOG/Edit/5
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+		//
+		// GET: /GiftsCOG/Details/5
 
-        //
-        // POST: /GiftsCOG/Edit/5
+		public ActionResult Details(int id)
+		{
+			return View();
+		}
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+		//
+		// GET: /GiftsCOG/Create
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		public ActionResult Create()
+		{
+			return View();
+		}
 
-        //
-        // GET: /GiftsCOG/Delete/5
+		//
+		// POST: /GiftsCOG/Create
 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+		[HttpPost]
+		public ActionResult Create(FormCollection collection)
+		{
+			try
+			{
+				// TODO: Add insert logic here
 
-        //
-        // POST: /GiftsCOG/Delete/5
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View();
+			}
+		}
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+		//
+		// GET: /GiftsCOG/Edit/5
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+		public ActionResult Edit(int id)
+		{
+			return View();
+		}
+
+		//
+		// POST: /GiftsCOG/Edit/5
+
+		[HttpPost]
+		public ActionResult Edit(int id, FormCollection collection)
+		{
+			try
+			{
+				// TODO: Add update logic here
+
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View();
+			}
+		}
+
+		//
+		// GET: /GiftsCOG/Delete/5
+
+		public ActionResult Delete(int id)
+		{
+			return View();
+		}
+
+		//
+		// POST: /GiftsCOG/Delete/5
+
+		[HttpPost]
+		public ActionResult Delete(int id, FormCollection collection)
+		{
+			try
+			{
+				// TODO: Add delete logic here
+
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View();
+			}
+		}
+	}
 }
