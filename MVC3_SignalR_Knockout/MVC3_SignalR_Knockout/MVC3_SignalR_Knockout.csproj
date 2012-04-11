@@ -91,6 +91,7 @@
     <Content Include="Content\demo_page.css" />
     <Content Include="Content\demo_table.css" />
     <Content Include="Content\demo_table_jui.css" />
+    <Content Include="Content\ResponsiveTables.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -171,6 +172,7 @@
     <Content Include="Scripts\knockout.bindings.radiochecklist.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
